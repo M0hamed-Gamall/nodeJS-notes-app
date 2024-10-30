@@ -1,0 +1,32 @@
+<!-- views/allNotes.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Notes</title>
+  <link rel="stylesheet" href="notes.css"> <!-- Link to your CSS if needed -->
+</head>
+<body>
+  <h1>All Notes</h1>
+  
+  <% if (notes.length > 0) { %>
+    <ul>
+      <% notes.forEach(note => { %>
+        <li>
+          <h2><%= note.title %></h2>
+          <p><%= note.content %></p>
+          <!-- Add a delete button -->
+          <form action="/delete/<%= note._id %>" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No notes available.</p>
+  <% } %>
+
+  <button onclick="window.location.href='/'">Add a New Note</button>
+</body>
+</html>
